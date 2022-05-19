@@ -47,7 +47,6 @@ function createRepo(user){
 //creating a card if the enter userid is valid and displaying it into the card
  function createUserCard(user,id) {
   document.querySelector("#main").style.display="block";
-  document.querySelector('body').classList.remove('height');
   const { name ,bio, followers , following , public_repos, avatar_url, company, location } = user.data;
   document.querySelector(".name").innerText=name?name:id;
   document.querySelector(".company").innerText="Works At :  "+company;
