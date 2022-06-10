@@ -1,5 +1,4 @@
 const main = document.getElementById("main");
-const submit = document.getElementById("btn");
 const search = document.getElementById("search-bar");
 const  repo = document.querySelector(".repo");
 
@@ -7,11 +6,11 @@ const  repo = document.querySelector(".repo");
 //using axios to fetch data
 function getUser(user) {
   axios.get("https://api.github.com/users/" + user)
-    .then((response) => createUserCard(response,user)).catch(err=>(inValidUser()));
+    .then((response) => createUserCard(response,user)).catch(err=>inValidUser());
 }
 
 //fetching for the repo
-function getrepo (user){
+function getrepo(user){
   axios.get("https://api.github.com/users/" + user+"/repos")
   .then((response) => createRepo(response));
 }
@@ -72,14 +71,23 @@ function EmptyRepo(){
    document.querySelector(".fallback>h2").textContent="Repo is Empty.";
 }
 
-submit.addEventListener("click", () => {
-  const user = search.value;
-  document.querySelector(".fallback").style.display="none";
-  document.querySelector(".container").style.height="fit-content";
-
-
-  if (user != "") {
-    getUser(user);
-    search.value = "";
+search.addEventListener("keypress", (e) => {
+  
+  if(e.code==="Enter"){
+    const user = e.target.value;
+    document.querySelector(".fallback").style.display="none";
+    document.querySelector(".container").style.height="fit-content";
+  
+  
+    if (user != "") {
+      getUser(user);
+      search.value = "";
+    }else{
+      search.setAttribute("placeholder","Input User Id")
+    }
   }
 });
+
+
+
+
