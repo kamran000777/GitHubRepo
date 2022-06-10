@@ -1,93 +1,106 @@
-const main = document.getElementById("main");
-const search = document.getElementById("search-bar");
-const  repo = document.querySelector(".repo");
-
-
-//using axios to fetch data
-function getUser(user) {
-  axios.get("https://api.github.com/users/" + user)
-    .then((response) => createUserCard(response,user)).catch(err=>inValidUser());
+*{
+      margin: 0;
+      padding: 0;
 }
-
-//fetching for the repo
-function getrepo(user){
-  axios.get("https://api.github.com/users/" + user+"/repos")
-  .then((response) => createRepo(response));
+body{
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      font-family: 'Inter', sans-serif;
+      background-image: url('https://img.wonderhowto.com/img/17/40/63614205794502/0/install-gitrob-kali-linux-mine-github-for-credentials.1280x600.jpg');
+      background-position:center;
+      background-repeat: no-repeat;
+      background-size: cover;
 }
-
-
-//if the user exist and had something in the repo then it will show that
-function createRepo(user){
-  if(user.data.length!==0){
-  repo.innerHTML = "";
- const dataArr = user.data;
- repo.innerText = `Repo : `;
- document.querySelector(".fallback").style.display="none";
-
-
-  dataArr.sort((a,b)=>{
-   return  b.stargazers_count-a.stargazers_count;
-  }).slice(0,14).forEach(element => {
-  let list = document.createElement("a");
-   let {html_url}= element;
-   list.classList.add("repo");
-   list.href=html_url;
-   list.target = "_blank";
-   list.innerText = element.name;
- 
-   repo.appendChild(list);
-  });
-  }else{
-    EmptyRepo();
-  }
+.container{
+      background-color: #000000d0;
+      margin: 0 1.5rem;
+      color: white;
+      padding:1.5rem;
+      border-radius: 10px;
+      width: 600px;
+      border: 1px solid white;
+      height: 2.5rem;
+      background-image: url("background.jpg");
+      background-position: right;
+      background-repeat: no-repeat;
+      background-size: cover;
+      margin-bottom: 2rem;
 }
-
-
-//creating a card if the enter userid is valid and displaying it into the card
- function createUserCard(user,id) {
-  document.querySelector("#main").style.display="block";
-  const { name ,bio, followers , following , public_repos, avatar_url, company, location } = user.data;
-  document.querySelector(".name").innerText=name?name:id;
-  document.querySelector(".company").innerText="Works At :  "+company;
-  document.querySelector(".location").innerHTML=`<img  src="locationIcon.jpg">&nbsp; ${location}`;
-  document.querySelector(".post").innerText=bio;
-  document.querySelector(".follower").innerText=followers +" Followers";
-  document.querySelector(".following").innerText=following +" Following";
-  document.querySelector(".public").innerText=public_repos +" Repos";
-  document.querySelector(".dp").src=avatar_url;
-  getrepo(id);
+input{
+      width: 95%;
+      border-radius: 5px;
+      padding:10px;
+      font-size: 1rem;
+      color:antiquewhite;
+      background-color: #0000006c;
+      outline: none;
+      border: 1px solid antiquewhite;
 }
-
-function inValidUser(){
-  console.log("invalid");
-  document.querySelector(".fallback").style.display="block";
-  document.querySelector(".fallback>h2").textContent="Oops! Invalid Id.";
-  document.querySelector("#main").style.display="none";
-  
+#main{
+      margin-top: 30px;
+       display: none;
 }
-
-function EmptyRepo(){
-  document.querySelector(".fallback").style.display="block";
-   document.querySelector(".fallback>h2").textContent="Repo is Empty.";
+.dp{
+      height:10em;
+      border-radius: 50%;
+      float: left;
+      margin-right: 5vw;
+      border: 2px solid white;
 }
-
-search.addEventListener("keypress", (e) => {
-  
-  if(e.code==="Enter"){
-    const user = e.target.value;
-    document.querySelector(".fallback").style.display="none";
-    document.querySelector(".container").style.height="fit-content";
-  
-  
-    if (user != "") {
-      getUser(user);
-      search.value = "";
-    }else{
-      search.setAttribute("placeholder","Input User Id")
-    }
-  }
-});
-
-
-
-
+.info h2{
+      font-size: 2rem;
+      margin-bottom: 15px;
+      
+}
+.info img{
+      margin-top: 10px ;
+}
+.post{
+     margin-top: 10px; 
+}
+.follow{
+      display: flex;
+      justify-content: center;
+      margin-bottom:10px;
+}
+.follow div{
+      margin-top: 15px;
+      font-size: 15px;
+      margin-right: 7vw;
+}
+.repo div{
+      padding-top: 5px;
+      font-size: 1.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+}
+ .repo div a{
+       text-align: center;
+      color:white;
+      visibility: visible;
+      margin-right: 9px;
+      text-decoration: none;
+      background-color: rgba(68, 68, 68, 0.726);
+      border-radius: 3px;
+      padding:3px;
+      margin-bottom: 3px;
+      line-height: 2em;
+      font-size:60%;
+}
+.repo a:hover{
+      background-color:skyblue;
+      color: black;
+}
+.fallback{
+      margin-top: 10px;
+      text-align: center;
+      display: none;
+}
+@media(max-width:530px){
+      input{
+            width: 70%;
+      }
+}
