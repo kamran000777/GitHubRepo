@@ -4,12 +4,12 @@
 }
 body{
       width: 100%;
-      min-height:100vh;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       font-family: 'Inter', sans-serif;
       background-image: url('https://img.wonderhowto.com/img/17/40/63614205794502/0/install-gitrob-kali-linux-mine-github-for-credentials.1280x600.jpg');
-      background-position: center;
+      background-position:center;
       background-repeat: no-repeat;
       background-size: cover;
 }
@@ -29,7 +29,7 @@ body{
       margin-bottom: 2rem;
 }
 input{
-      width: 76%;
+      width: 95%;
       border-radius: 5px;
       padding:10px;
       font-size: 1rem;
@@ -37,18 +37,6 @@ input{
       background-color: #0000006c;
       outline: none;
       border: 1px solid antiquewhite;
-}
-#btn{
-      margin-left: 3px;
-      border-radius: 5px;
-      width:15%;
-      font-size: 1rem;
-      padding: 9.5px;
-      color:antiquewhite;
-      background-color: #00000075;
-      outline: none;
-      border: 1px solid antiquewhite;
-      cursor: pointer;
 }
 #main{
       margin-top: 30px;
@@ -82,10 +70,14 @@ input{
       font-size: 15px;
       margin-right: 7vw;
 }
-.repo{
-      font-size: 1.5em;
+.repo div{
+      padding-top: 5px;
+      font-size: 1.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
 }
- .repo a{
+ .repo div a{
        text-align: center;
       color:white;
       visibility: visible;
@@ -93,7 +85,8 @@ input{
       text-decoration: none;
       background-color: rgba(68, 68, 68, 0.726);
       border-radius: 3px;
-      padding: 5px;
+      padding:3px;
+      margin-bottom: 3px;
       line-height: 2em;
       font-size:60%;
 }
