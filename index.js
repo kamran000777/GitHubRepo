@@ -32,7 +32,7 @@ function createRepo(user){
    list.classList.add("repo");
    list.href=html_url;
    list.target = "_blank";
-   list.innerText = element.name.slice(0,15);
+   list.innerText = element.name.slice(0,30);
  
    repo.appendChild(list);
   });
